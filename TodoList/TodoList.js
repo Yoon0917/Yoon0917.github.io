@@ -58,7 +58,6 @@ const initData = (printDate) => {
   }
 
   document.querySelectorAll(".listItem").forEach((e) => {
-    console.log(printDate[i].content);
     e.children[1].innerHTML = printDate[i].content;
     e.children[2].innerHTML = printDate[i].date;
 
@@ -69,8 +68,10 @@ const initData = (printDate) => {
     if (printDate[j].isDone) {
       e.setAttribute("checked", "true");
     }
+    let q = j;
     e.addEventListener("change", () => {
-      onUpdate(e, j - 1);
+      console.log(q);
+      onUpdate(e, q);
     });
 
     j++;
@@ -103,7 +104,7 @@ document.querySelector(".Editor > button").onclick = () => {
     date: new Date().toLocaleString(),
   };
   mockData.push(pp);
-  console.log(mockData);
+
   idIndex++;
   const cdiv = document.createElement("div");
   cdiv.setAttribute("class", "listItem");
@@ -137,9 +138,10 @@ const todoDel = (th) => {
   initData(mockData); //호출한다.(다시 화면 랜더링)
 };
 
-const onUpdate = (targetId, j) => {
-  if (targetId.getAttribute("checked")) mockData[j].isDone = true;
-  else mockData[j].isDone = false;
+const onUpdate = (targetId, k) => {
+  console.log(mockData[k].isDone);
+  if (targetId.getAttribute("checked")) mockData[k].isDone = false;
+  else mockData[k].isDone = true;
 };
 
 document.querySelector("#keyword").onkeyup = (e) => {
@@ -155,6 +157,6 @@ const getFilterData = (search) => {
   //filter함수를 이용해서 search(검색어)를 포함하고 있는 todo들를 받는다
 
   let result = mockData.filter((data) => data.content.includes(search));
-  console.log(result);
+
   return result;
 };
