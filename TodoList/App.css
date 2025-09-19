@@ -1,0 +1,20 @@
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 500px;
+  margin: 0 0 auto;
+}
+header > h1 {
+  color: rgb(37, 147, 255);
+}
+.Editor {
+  display: flex;
+  gap: 10px;
+}
+.Editor > input {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 5px;
+}
